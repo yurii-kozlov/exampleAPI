@@ -4,4 +4,4 @@ node_modules/
 # Ignore log files
 *.log
 # Ignore compiled TypeScript files
-dist/
+# dist/
