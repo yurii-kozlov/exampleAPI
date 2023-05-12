@@ -1,16 +1,34 @@
-import express, { Request, Response } from 'express'
+import dotenv from 'dotenv';
+import express from 'express';
+import cors from 'cors';
+import cookieParser from 'cookie-parser';
+import mongoose from 'mongoose';
+import { register } from 'tsconfig-paths';
+import router from './router/router';
+import handleErrors from './middlewares/error-middleware';
 
-const app = express()
-const port = process.env.PORT || 8080
+dotenv.config();
+register();
 
-app.get('/', (_req: Request, res: Response) => {
-  return res.send('Express Typescript on Vercel')
-})
+const PORT = process.env.PORT || 5000;
+const app = express();
 
-app.get('/ping', (_req: Request, res: Response) => {
-  return res.send('pong 🏓')
-})
+app.use(express.json());
+app.use(cookieParser());
+app.use(cors({
+  credentials: true,
+  origin: process.env.CLIENT_URL
+}));
+app.use('/api', router);
+app.use(handleErrors);
 
-app.listen(port, () => {
-  return console.log(`Server is listening on ${port}`)
-})
+const start = async () => {
+  try {
+      await mongoose.connect(process.env.DB_URL);
+      app.listen(PORT, () => console.log(`server started on PORT: ${PORT}`));
+  } catch (error) {
+      console.log(error);
+  }
+}
+
+start();
