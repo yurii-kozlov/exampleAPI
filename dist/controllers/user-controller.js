@@ -27,7 +27,12 @@ class UserController {
                 }
                 const { email, password } = req.body;
                 const userData = yield user_service_1.default.registration(email, password);
-                res.cookie('refreshToken', userData.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true });
+                res.cookie('refreshToken', userData.refreshToken, {
+                    maxAge: 30 * 24 * 60 * 60 * 1000,
+                    httpOnly: true,
+                    sameSite: 'none',
+                    secure: true
+                });
                 return res.json(userData);
             }
             catch (error) {
@@ -40,7 +45,12 @@ class UserController {
             try {
                 const { email, password } = req.body;
                 const userData = yield user_service_1.default.login(email, password);
-                res.cookie('refreshToken', userData.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true });
+                res.cookie('refreshToken', userData.refreshToken, {
+                    maxAge: 30 * 24 * 60 * 60 * 1000,
+                    httpOnly: true,
+                    sameSite: 'none',
+                    secure: true
+                });
                 return res.json(userData);
             }
             catch (error) {
@@ -53,7 +63,7 @@ class UserController {
             try {
                 const { refreshToken } = req.cookies;
                 const token = yield user_service_1.default.logout(refreshToken);
-                res.clearCookie('refreshToken');
+                res.clearCookie('refreshToken', { sameSite: 'none', secure: true });
                 return res.json(token);
             }
             catch (error) {
@@ -114,7 +124,12 @@ class UserController {
             try {
                 const { refreshToken } = req.cookies;
                 const userData = yield user_service_1.default.refresh(refreshToken);
-                res.cookie('refreshToken', userData.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true });
+                res.cookie('refreshToken', userData.refreshToken, {
+                    maxAge: 30 * 24 * 60 * 60 * 1000,
+                    httpOnly: true,
+                    sameSite: 'none',
+                    secure: true
+                });
                 return res.json(userData);
             }
             catch (error) {

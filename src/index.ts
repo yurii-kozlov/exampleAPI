@@ -19,6 +19,12 @@ app.use(cors({
   credentials: true,
   origin: process.env.CLIENT_URL
 }));
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', process.env.CLIENT_URL);
+  res.header('Access-Control-Allow-Credentials', 'true');
+  next();
+});
+
 app.use('/api', router);
 app.use(handleErrors);
 

@@ -30,6 +30,11 @@ app.use((0, cors_1.default)({
     credentials: true,
     origin: process.env.CLIENT_URL
 }));
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', process.env.CLIENT_URL);
+    res.header('Access-Control-Allow-Credentials', 'true');
+    next();
+});
 app.use('/api', router_1.default);
 app.use(error_middleware_1.default);
 const start = () => __awaiter(void 0, void 0, void 0, function* () {
