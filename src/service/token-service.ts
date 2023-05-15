@@ -1,4 +1,4 @@
-import jwt, { JwtPayload } from 'jsonwebtoken';
+import jwt, { JwtPayload, Secret } from 'jsonwebtoken';
 import tokenModel from '../models/token-model';
 import UserDto from '../dtos/user-dto';
 import dotenv from 'dotenv';
@@ -7,17 +7,25 @@ dotenv.config();
 
 class TokenService {
   generateTokens(payload: UserDto) {
+    const payloadParam = {
+      email: payload.email,
+      id: payload.id,
+      isActivated: payload.isActivated,
+      plan: payload.plan,
+    };
     const accessToken = jwt.sign(
-      payload,
+      payloadParam,
       process.env.JWT_ACCESS_SECRET_KEY,
       {expiresIn: '30m'}
     );
 
     const refreshToken = jwt.sign(
-      payload, 
+      payloadParam, 
       process.env.JWT_REFRESH_SECRET_KEY,
       {expiresIn: '30d'}
     );
+
+    console.log('REFRESH TOKEN FROM TOKEN SERVICE', refreshToken)
 
     return {
       accessToken,
