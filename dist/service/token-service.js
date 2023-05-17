@@ -26,7 +26,6 @@ class TokenService {
         };
         const accessToken = jsonwebtoken_1.default.sign(payloadParam, process.env.JWT_ACCESS_SECRET_KEY, { expiresIn: '30m' });
         const refreshToken = jsonwebtoken_1.default.sign(payloadParam, process.env.JWT_REFRESH_SECRET_KEY, { expiresIn: '30d' });
-        console.log('REFRESH TOKEN FROM TOKEN SERVICE', refreshToken);
         return {
             accessToken,
             refreshToken
