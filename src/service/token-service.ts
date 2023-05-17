@@ -1,4 +1,4 @@
-import jwt, { JwtPayload, Secret } from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 import tokenModel from '../models/token-model';
 import UserDto from '../dtos/user-dto';
 import dotenv from 'dotenv';
@@ -24,8 +24,6 @@ class TokenService {
       process.env.JWT_REFRESH_SECRET_KEY,
       {expiresIn: '30d'}
     );
-
-    console.log('REFRESH TOKEN FROM TOKEN SERVICE', refreshToken)
 
     return {
       accessToken,
