@@ -119,6 +119,30 @@ class UserController {
             }
         });
     }
+    clearWatchLaterList(req, res, next) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const { email } = req.body;
+                yield user_service_1.default.clearWatchLaterList(email);
+                return res.json([]);
+            }
+            catch (error) {
+                next(error);
+            }
+        });
+    }
+    clearLikedMoviesList(req, res, next) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const { email } = req.body;
+                yield user_service_1.default.clearLikedMoviesList(email);
+                return res.json([]);
+            }
+            catch (error) {
+                next(error);
+            }
+        });
+    }
     refresh(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {

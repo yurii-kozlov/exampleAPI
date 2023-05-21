@@ -95,6 +95,28 @@ class UserService {
     await user.save();
   }
 
+  async clearWatchLaterList(email: string) {
+    const user = await UserModel.findOne({email});
+
+    if (!user) {
+      throw ApiError.BadRequest(`The user with the email ${email} doesn't exist. Please register first`);
+    }
+
+    user.watchLaterMovies = [];
+    await user.save();
+  }
+
+  async clearLikedMoviesList(email: string) {
+    const user = await userModel.findOne({email});
+
+    if (!user) {
+      throw ApiError.BadRequest(`The user with the email ${email} doesn't exist. Please register first`);
+    }
+
+    user.likedMovies = [];
+    await user.save()
+  }
+
   async login(email: string, password: string) {
     const user = await userModel.findOne({email});
 

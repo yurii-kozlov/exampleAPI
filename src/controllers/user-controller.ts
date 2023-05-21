@@ -142,6 +142,38 @@ class UserController {
     }
   }
 
+  async clearWatchLaterList(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<Response<[] | void>> {
+    try {
+        const { email } = req.body;
+
+        await userService.clearWatchLaterList(email);
+
+        return res.json([]);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async clearLikedMoviesList(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<Response<[] | void>> {
+    try {
+        const { email } = req.body;
+
+        await userService.clearLikedMoviesList(email);
+        
+        return res.json([]);
+    } catch (error) {
+        next(error);
+    }
+  }
+
   async refresh(
     req: Request,
     res: Response,
