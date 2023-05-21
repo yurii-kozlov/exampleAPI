@@ -17,5 +17,7 @@ router.get('/users', auth_middleware_1.default, user_controller_1.default.getUse
 router.patch('/setPlan', user_controller_1.default.setPlan);
 router.patch('/addMovieToWatchLaterList', user_controller_1.default.addMovieToWatchLaterList);
 router.patch('/addMovieToLikedList', user_controller_1.default.addMovieToLikedList);
+router.patch('/clearWatchLaterMoviesList', user_controller_1.default.clearWatchLaterList);
+router.patch('/clearLikedMoviesList', user_controller_1.default.clearLikedMoviesList);
 exports.default = router;
 //# sourceMappingURL=router.js.map
