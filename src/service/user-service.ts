@@ -95,6 +95,32 @@ class UserService {
     await user.save();
   }
 
+  async deleteMovieFromWatchlist(email: string, movieTitle: string) {
+    const user = await UserModel.findOne({email});
+
+    if (!user) {
+      throw ApiError.BadRequest(`The user with the email ${email} doesn't exist. Please register first`);
+    }
+
+    user.watchLaterMovies = user
+      .watchLaterMovies.filter((movie) => movie.original_title !== movieTitle);
+
+    await user.save();
+  }
+
+  async deletemovieFromLikedList(email: string, movieTitle: string) {
+    const user = await userModel.findOne({email});
+
+    if (!user) {
+      throw ApiError.BadRequest(`The user with the email ${email} doesn't exist. Please register first`);
+    }
+
+    user.likedMovies = user.likedMovies
+      .filter((movie) => movie.original_title !== movieTitle);
+
+    await user.save();
+  }
+
   async clearWatchLaterList(email: string) {
     const user = await UserModel.findOne({email});
 

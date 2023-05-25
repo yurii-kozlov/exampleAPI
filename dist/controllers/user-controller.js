@@ -119,6 +119,30 @@ class UserController {
             }
         });
     }
+    deleteMovieFromWatchlist(req, res, next) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const { email, movieTitle } = req.body;
+                yield user_service_1.default.deleteMovieFromWatchlist(email, movieTitle);
+                return res.json(movieTitle);
+            }
+            catch (error) {
+                next(error);
+            }
+        });
+    }
+    deletemovieFromLikedList(req, res, next) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const { email, movieTitle } = req.body;
+                yield user_service_1.default.deletemovieFromLikedList(email, movieTitle);
+                return res.json(movieTitle);
+            }
+            catch (error) {
+                next(error);
+            }
+        });
+    }
     clearWatchLaterList(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {

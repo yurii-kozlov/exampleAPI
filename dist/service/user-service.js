@@ -85,6 +85,28 @@ class UserService {
             yield user.save();
         });
     }
+    deleteMovieFromWatchlist(email, movieTitle) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const user = yield user_model_1.default.findOne({ email });
+            if (!user) {
+                throw api_error_1.default.BadRequest(`The user with the email ${email} doesn't exist. Please register first`);
+            }
+            user.watchLaterMovies = user
+                .watchLaterMovies.filter((movie) => movie.original_title !== movieTitle);
+            yield user.save();
+        });
+    }
+    deletemovieFromLikedList(email, movieTitle) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const user = yield user_model_2.default.findOne({ email });
+            if (!user) {
+                throw api_error_1.default.BadRequest(`The user with the email ${email} doesn't exist. Please register first`);
+            }
+            user.likedMovies = user.likedMovies
+                .filter((movie) => movie.original_title !== movieTitle);
+            yield user.save();
+        });
+    }
     clearWatchLaterList(email) {
         return __awaiter(this, void 0, void 0, function* () {
             const user = yield user_model_1.default.findOne({ email });

@@ -19,5 +19,7 @@ router.patch('/addMovieToWatchLaterList', user_controller_1.default.addMovieToWa
 router.patch('/addMovieToLikedList', user_controller_1.default.addMovieToLikedList);
 router.patch('/clearWatchLaterMoviesList', user_controller_1.default.clearWatchLaterList);
 router.patch('/clearLikedMoviesList', user_controller_1.default.clearLikedMoviesList);
+router.patch('/deleteMovieFromWatchList', user_controller_1.default.deleteMovieFromWatchlist);
+router.patch('/deleteMovieFromLikedList', user_controller_1.default.deletemovieFromLikedList);
 exports.default = router;
 //# sourceMappingURL=router.js.map
