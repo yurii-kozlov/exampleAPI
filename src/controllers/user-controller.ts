@@ -142,6 +142,38 @@ class UserController {
     }
   }
 
+  async deleteMovieFromWatchlist(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<Response<string | void>> {
+    try {
+        const {email, movieTitle } = req.body;
+
+        await userService.deleteMovieFromWatchlist(email, movieTitle);
+
+        return res.json(movieTitle);
+    } catch (error) {
+        next(error);
+    }
+  }
+
+  async deletemovieFromLikedList(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) {
+    try {
+        const {email, movieTitle} = req.body;
+
+        await userService.deletemovieFromLikedList(email, movieTitle);
+
+        return res.json(movieTitle);
+    } catch (error) {
+        next(error);
+    }
+  }
+
   async clearWatchLaterList(
     req: Request,
     res: Response,

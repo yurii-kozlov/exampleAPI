@@ -20,5 +20,7 @@ router.patch('/addMovieToWatchLaterList', userController.addMovieToWatchLaterLis
 router.patch('/addMovieToLikedList', userController.addMovieToLikedList);
 router.patch('/clearWatchLaterMoviesList', userController.clearWatchLaterList);
 router.patch('/clearLikedMoviesList', userController.clearLikedMoviesList);
+router.patch('/deleteMovieFromWatchList', userController.deleteMovieFromWatchlist);
+router.patch('/deleteMovieFromLikedList', userController.deletemovieFromLikedList);
 
 export default router;
