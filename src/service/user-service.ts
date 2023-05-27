@@ -36,7 +36,7 @@ class UserService {
     });
 
     await mailService.sendActivationMail(
-      email, 
+      email,
       `${process.env.API_URL}/api/activate/${activationLink}`
     );
     
