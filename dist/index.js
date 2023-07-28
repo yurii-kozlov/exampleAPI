@@ -20,7 +20,12 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const tsconfig_paths_1 = require("tsconfig-paths");
 const router_1 = __importDefault(require("./router/router"));
 const error_middleware_1 = __importDefault(require("./middlewares/error-middleware"));
-dotenv_1.default.config();
+if (process.env.NODE_ENV === 'production') {
+    dotenv_1.default.config({ path: '.env.production' });
+}
+else {
+    dotenv_1.default.config({ path: '.env.development' });
+}
 (0, tsconfig_paths_1.register)();
 const PORT = process.env.PORT || 5000;
 const app = (0, express_1.default)();

@@ -7,7 +7,11 @@ import { register } from 'tsconfig-paths';
 import router from './router/router';
 import handleErrors from './middlewares/error-middleware';
 
-dotenv.config();
+if (process.env.NODE_ENV === 'production') {
+  dotenv.config({ path: '.env.production' });
+} else {
+  dotenv.config({ path: '.env.development' });
+}
 register();
 
 const PORT = process.env.PORT || 5000;
